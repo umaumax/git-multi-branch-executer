@@ -37,9 +37,10 @@ setting_filepath="git-multi-branch-exec.yml"
 if [[ $1 == '-y' ]]; then
   shift 1
   [[ $# -lt 1 ]] && echo "-y <path to yml>" 1>&2 && exit 1
-  setting_filepath="$(abspath $1)"
   shift 1
 fi
+setting_filepath="$(abspath $setting_filepath)"
+
 [[ $# -lt 1 ]] && echo "$(basename "$0") command" 1>&2 && exit 1
 cmd="$1"
 
