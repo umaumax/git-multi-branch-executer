@@ -1,0 +1,15 @@
+- name:     pattern1
+  checkout: ""
+  patches:
+    - abc.patch
+    - def.patch
+  scripts:
+    - ls
+    - pwd
+    - ./build.sh
+- name:     pattern2
+  checkout:
+  patches:
+    -
+  scripts:
+    -
