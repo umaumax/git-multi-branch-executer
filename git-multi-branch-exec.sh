@@ -2,6 +2,10 @@
 set -eu
 set -o pipefail
 
+# ----
+# util functions
+# ----
+
 BLACK=$'\e[30m' RED=$'\e[31m' GREEN=$'\e[32m' YELLOW=$'\e[33m' BLUE=$'\e[34m' PURPLE=$'\e[35m' LIGHT_BLUE=$'\e[36m' WHITE=$'\e[37m' GRAY=$'\e[90m' DEFAULT=$'\e[0m'
 function echo_log() {
   echo "${GREEN}[LOG][$GIT_MULTI_BRANCH_EXECUTER_LOG_NAME]${DEFAULT}" "$@" 1>&2
@@ -10,11 +14,6 @@ function echo_log() {
 ! git rev-parse --is-inside-work-tree >/dev/null 2>&1 && echo 1>&2 "run in git repo" && exit 1
 
 # NOTE: required yq
-
-# ----
-# util function
-# ----
-
 function abspath() {
   local target=${1:-.}
   if [[ $(uname) == "Darwin" ]]; then
@@ -26,6 +25,10 @@ function abspath() {
   else
     readlink -f $target
   fi
+}
+
+function hr() {
+  printf '%*s\n' "${2:-$(tput cols)}" '' | tr ' ' "${1:--}"
 }
 
 # ----
@@ -157,6 +160,9 @@ if [[ $cmd == "new" ]]; then
   for name in $(echo_pattern_names); do
     GIT_MULTI_BRANCH_EXECUTER_LOG_NAME="$name"
     new_git_repo "$name"
+    hr
+    hr
+    hr
   done
   cmd='info'
 elif [[ $cmd == "clean" ]]; then
