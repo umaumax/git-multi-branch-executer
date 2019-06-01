@@ -11,9 +11,6 @@ function echo_log() {
   echo "${GREEN}[LOG][$GIT_MULTI_BRANCH_EXECUTER_LOG_NAME]${DEFAULT}" "$@" 1>&2
 }
 
-! git rev-parse --is-inside-work-tree >/dev/null 2>&1 && echo 1>&2 "run in git repo" && exit 1
-
-# NOTE: required yq
 function abspath() {
   local target=${1:-.}
   if [[ $(uname) == "Darwin" ]]; then
@@ -32,6 +29,9 @@ function hr() {
 }
 
 # ----
+
+! git rev-parse --is-inside-work-tree >/dev/null 2>&1 && echo 1>&2 "run in git repo" && exit 1
+! type >/dev/null 2>&1 yq && echo 1>&2 "pip install yq" && exit 1
 
 setting_filepath="git-multi-branch-exec.yml"
 if [[ $1 == '-y' ]]; then
