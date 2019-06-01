@@ -6,6 +6,7 @@
   scripts:
     - ls
     - pwd
+    - echo hello world
     - ./build.sh
 - name:     pattern2
   checkout:
