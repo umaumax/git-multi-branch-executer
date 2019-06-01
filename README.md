@@ -5,6 +5,11 @@
 ## for what?
 * ブランチごとにビルドを実行し，それらのベンチマークを比較するため
 
+## how to run
+```
+git-multi-branch-exec.sh -y git-multi-branch-exec.yml new
+```
+
 ## specification
 * `~/.cache/git-multi-branch-executer/`以下に現在のworking directoryのgitのrepositoryを`cp`する
   * 共通で利用するファイル
