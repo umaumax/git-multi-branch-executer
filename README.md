@@ -6,8 +6,9 @@
 * ブランチごとにビルドを実行し，それらのベンチマークを比較するため
 
 ## how to run
+1. `git-multi-branch-exec.yml`
 ```
-git-multi-branch-exec.sh -y git-multi-branch-exec.yml new
+git-multi-branch-exec.sh new
 ```
 
 ## specification
